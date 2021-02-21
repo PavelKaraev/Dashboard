@@ -1,0 +1,104 @@
+<div class="container" *ngIf="createProjectForm; else loader">
+  <form class="row form" [formGroup]="createProjectForm">
+    <div class="col-8">
+      <div class="card">
+        <div class="card__title">
+          <h3>Создать новый проект</h3>
+        </div>
+        <div class="card__content">
+          <div class="form__control">
+            <input formControlName="titleControl" type="text" class="form__input" [ngClass]="{form__input_error: (title.dirty || title.touched) && title.invalid,  form__input_success: (title.dirty || title.touched) && title.valid}" placeholder="Название проекта">
+            <div class="form__message form__message_error" *ngIf="(title.dirty || title.touched) && title.invalid">
+              <span *ngIf="title.errors.required">Заголовок <strong>обязателен</strong></span>
+            </div> 
+          </div> 
+          <div class="form__control">
+            <quill-editor formControlName="descriptionControl" [ngClass]="{editor_error: (description.dirty || description.touched) && description.invalid,  editor_success: (title.dirty || title.touched) && title.valid}"></quill-editor>
+            <div class="form__message form__message_error" *ngIf="(description.dirty || description.touched) && description.invalid">
+              <span *ngIf="description.errors.required">Опишите, пожалуйста, проект</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__title">
+          <h3>Скриншоты</h3>
+        </div>
+        <div class="card__content">
+          <div class="upload upload__image upload__multiple">
+            <label for="screenshot" class="upload__label">
+              <input id="screenshot" class="upload__input" type="file" (change)="changeScreenshots($event.target.files)" multiple>
+            </label>
+            <div *ngIf="screenshots" class="screenshot">
+              <div class="screenshot__item" *ngFor="let screenshot of screenshotsPreview; let i = index">
+                <img [src]="screenshot" alt="">
+                <button type="button" class="btn-close" (click)="removeScreenshot(i)"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card__title">
+          <h3>Информация</h3>
+        </div>
+        <div class="card__content">
+          <div class="form__group">
+            <label for="status" class="form__label">Статус</label>
+            <select formControlName="statusControl" name="status" id="status" class="form__select">
+              <option value="" selected disabled>Статус</option>
+              <option value="В разработке">В разработке</option>
+              <option value="Завершен">Завершен</option>
+              <option value="Приостановлен">Приостановлен</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="category" class="form__label">Категория</label>
+            <select #category formControlName="categoryControl" name="category" id="category" class="form__select">
+              <option value="" selected disabled>Категория</option>
+              <option value="Angular">Angular</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="NativeScript">NativeScript</option>
+              <option value="JavaScript">JavaScript</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="date" class="form__label">Дата</label>
+            <input formControlName="dateControl" type="date" id="date" class="form__input form__input_date">
+          </div>
+          <div class="form__group">
+            <label for="repository" class="form__label">Ссылка на репозиторий</label>
+            <input formControlName="repositoryControl" type="url" id="repository" class="form__input" placeholder="Ссылка на репозиторий">
+          </div>
+          <div class="form__group">
+            <label for="url" class="form__label">Ссылка на проект</label>
+            <input formControlName="urlControl" type="url" id="url" class="form__input" placeholder="Ссылка на проект">
+          </div>
+          <button type="submit" [disabled]="createProjectForm.invalid" class="btn btn__primary" (click)="createProject()">Опубликовать</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__title">
+          <h3>Заставка</h3>
+        </div>
+        <div class="card__content">
+          <div class="upload upload_image">
+            <label for="thumbnail" class="upload__label" id="thumbnail-label">
+              <input id="thumbnail" class="upload__input" type="file" (change)="changeThumbnail($event.target.files)">
+              <div class="upload__preview">
+                <img class="upload__preview-image" [src]="preview" alt="">
+              </div>
+            </label>
+            <button *ngIf="preview" type="button" class="btn-close" (click)="removeThumbnail()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<app-storage></app-storage>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

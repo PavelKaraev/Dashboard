@@ -1,0 +1,38 @@
+.project {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  &__top {
+    margin-bottom: 20px;
+  }
+  &__thumbnail {
+    line-height: 0;
+    img {
+      width: 100%;
+    }
+  }
+  &__info {
+    padding: 0 20px;
+  }
+  &__title {
+    margin-top: 5px;
+    h1 {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 48px;
+    }
+  }
+  &__description {
+    font-size: 14px;
+    line-height: 26px;
+    color: #9FA3A7;
+    border-bottom: 1px solid #E8E9ED;
+  }
+  &__action {
+    margin-top: 50px;
+  }
+  @media (min-width: 992px) {
+    &__info {
+      padding: 0 40px;
+    }
+  }
+}

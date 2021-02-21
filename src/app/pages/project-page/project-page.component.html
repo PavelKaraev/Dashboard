@@ -1,0 +1,34 @@
+<div class="container project" *ngIf="project; else loader">
+  <div class="row no-gutters">
+    <div class="col-lg-6">
+      <div class="project__thumbnail">
+        <img [src]="project.thumbnail" [alt]="project.thumbnail">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="project__info">
+        <div class="project__top">
+          <a routerLink="" class="btn-link">Вернуться назад</a>
+        </div>
+        <div class="badge" [ngClass]="{
+          badge_primary: primary,
+          badge_success: success,
+          badge_danger: danger
+        }">{{ project.status }}</div>
+        <div class="project__title">
+          <h1>{{ project.title }}</h1>
+        </div>
+        <div class="project__description">
+          <quill-view-html [content]="project.description"></quill-view-html>
+        </div>
+        <div class="project__action">
+          <a [href]="project.repository" *ngIf="project.repository" class="btn btn_yellow" target="_blank">Репозиторий</a>
+          <a [href]="project.url" *ngIf="project.url" class="btn btn__stroke btn__stroke_yellow" target="_blank">Ссылка на проект</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

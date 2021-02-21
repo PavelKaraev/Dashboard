@@ -1,0 +1,286 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/normalize.css/normalize";
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+@import "../node_modules/bootstrap/scss/_mixins";
+@import "../node_modules/bootstrap/scss/_grid";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$yellow: #FFC80A;
+$black: #292929;
+$grey: #9FA3A7;
+$red: #F05638;
+$purple: #8D76BE;
+
+$container-max-widths: (
+  sm: 100%,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+@mixin unstyled-list() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  color: $black;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  color: inherit;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  &_justify-right {
+    justify-content: flex-end;
+  }
+  &_justify-center {
+    justify-content: center;
+  }
+  &_align-center {
+    align-items: center;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  height: 40px;
+  padding: 0 25px;
+  border-radius: 100px;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  & + .btn {
+    margin-left: 10px;
+  }
+  &_yellow {
+    background-color: $yellow;
+    color: $black;
+  }
+  &_red {
+    background-color: $red;
+    color: #fff;
+  }
+  &__stroke {
+    border: 3px solid transparent;
+    &_white {
+      border-color: #fff;
+      color: #fff;
+      &:hover {
+        background-color: #fff;
+        color: $black;
+      }
+    }
+    &_yellow {
+      border-color: $yellow;
+      color: $black;
+      &:hover {
+        background-color: $yellow;
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    & + .btn {
+      margin-left: 20px;
+    }
+  }
+}
+
+.btn-link {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #9FA3A7;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: .5px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  &_success {
+    background-color: #29CC97;
+  }
+  &_warning {
+    background-color: #FEC400;
+  }
+  &_danger {
+    background-color: #F12B2C;
+  }
+  &_primary {
+    background-color: #0099fa;
+  }
+}
+
+
+.section {
+  padding: 40px 0;
+  &_grey {
+    background-color: #f7f8f9;
+  }
+  &_yellow {
+    background-color: $yellow;
+  }
+  &__title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+    font-weight: bold;
+    &_white {
+      color: #fff;
+    }
+  }
+  &__action {
+    margin-bottom: 20px;
+  }
+  @media (min-width: 992px) {
+    padding: 70px 0;
+    &__title {
+      margin-bottom: 50px;
+    }
+    &__action {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+.select-list {
+  display: inline-block;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  &_dark {
+    color: $black;
+  }
+  &_dark &__toggle {
+    &::after {
+      color: #9fa3a7;
+    }
+  }
+  &_yellow {
+    color: $yellow;
+  }
+  &__toggle {
+    position: relative;
+    display: inline-block;
+    padding-right: 15px;
+    color: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    &::after{
+      content: '';
+      margin-right: 5px;
+      position: absolute;
+      display: block;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 100%;
+      margin: auto 0;
+      background-image: url(./assets/img/chevron-down.svg);
+      background-repeat: no-repeat;
+      background-size: 10px;
+      background-position: center;
+      will-change: transform;
+    }
+    &_active{
+      &::after{
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__menu {
+    z-index: 100;
+    @include unstyled-list();
+    position: absolute;
+    display: none;
+    li {
+      margin: 5px 0;
+      cursor: pointer;
+      transition: opacity .4s;
+      &:hover{
+        opacity: .7;
+      }
+    }
+    &_open {
+      display: block;
+    }
+  }
+}
+
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  color: $grey;
+  font-family: "Rubik", sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  &__item {
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 13px;
+      height: 15px;
+      margin-right: 5px;
+      background-repeat: no-repeat;
+      background-size: 13px;
+      vertical-align: bottom;
+    }
+    &_views {
+      &::before {
+        background-image: url(./assets/img/show.svg);
+      }
+    }
+    &_date {
+      &::before {
+        background-image: url(./assets/img/main-calendar.svg);
+      }
+    }
+  }
+}

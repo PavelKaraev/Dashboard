@@ -1,0 +1,12 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  svg{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+  }
+}

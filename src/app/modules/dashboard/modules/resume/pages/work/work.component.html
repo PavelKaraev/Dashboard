@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card__title">
+          <h3>Опыт работы</h3>
+          <a [routerLink]="['new']" class="btn btn__stroke btn__stroke_primary">Добавить новый</a>
+        </div>
+        <div class="card__content">
+          <div class="resume">
+            <div class="resume__title">
+              <h3>Junior Front-End разработчик/HTML-верстальщик (Freelancer)</h3>
+            </div>
+            <div class="resume__top-info">
+              <div>с 02.2018 по наст. время <span class="resume__sub-text">(2 года 11 месяцев)</span></div>
+              <div>Upwork, Київ <span class="resume__sub-text">(Верстка сайтов)</span></div>
+            </div>
+            <div class="resume__info">
+              <p>Выполняемые обязанности:</p>
+              <ul>
+                <li>верстка с использованием HTML/CSS/JavaScript на основе макетов, созданных дизайнером;</li>
+                <li>адаптацией готовых страниц под мобильные устройства;</li>
+                <li>реализация несложной Javascript логики;</li>
+                <li>создание, настройка и исправление ошибок отдельных страниц и сайтов на CMS Wordpress;</li>
+              </ul>
+              <p>Проекты находил через Upwork, ссылка на профиль:</p>
+              <p><a href="#">https://www.upwork.com/o/profiles/users/~01e1f0eb06d97be56d/</a></p>
+            </div>
+            <div class="resume__action">
+              <a href="#" class="btn__link btn__link_primary">Редактировать</a>
+              <button type="button" class="btn__link btn__link_danger">Удалить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

@@ -1,0 +1,17 @@
+<div class="project">
+  <div class="project__image">
+    <a [routerLink]="['/portfolio', 'project', project.id]">
+      <img [src]="project.thumbnail" class="img-fluid" [alt]="project.title">
+    </a>
+    <div class="meta-info project__meta">
+      <div class="meta-info__item meta-info__item_date">{{ project.date | date: 'longDate':null:'ru' }}</div>
+      <div class="meta-info__item meta-info__item_status">{{ project.status }}</div>
+    </div>
+  </div>
+  <div class="project__content">
+    <h3 class="project__title">
+      <a [routerLink]="['/portfolio', 'project', project.id]">{{ project.title }}</a>
+    </h3>
+    <p class="project__category">{{ project.category }}</p>
+  </div>
+</div>

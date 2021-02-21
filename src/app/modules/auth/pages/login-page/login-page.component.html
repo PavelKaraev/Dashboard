@@ -1,0 +1,22 @@
+<div class="page page__full-width d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="col-6 offset-3">
+      <div class="card">
+        <h2 class="card__title card__title_center">Dashboard Login</h2>
+        <div class="card__content">
+          <form class="form form__login" [formGroup]="loginForm" (submit)="login()">
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input formControlName="emailControl" type="email" id="email" placeholder="Email" class="form__input">
+            </div>
+            <div class="form__group">
+              <label for="password" class="form__label">Password</label>
+              <input formControlName="passwordControl" type="password" id="password" placeholder="Password" class="form__input">
+            </div>
+            <button type="submit" class="btn btn__primary" [disabled]="loginForm.invalid || submited">Войти</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

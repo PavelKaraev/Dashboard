@@ -1,0 +1,42 @@
+<div class="storage">
+  <div class="container">
+    <div class="card">
+      <div class="card__content">
+        <div class="tabs">
+          <div class="tabs__nav">
+            <button type="button" *ngFor="let tab of tabs; let i = index" class="tabs__link" [ngClass]="{tabs__link_active: tab.active}" (click)="changeTab(i)">{{ tab.title }}</button>
+          </div>
+          <div class="tabs__content">
+            <div class="tabs__pane" *ngIf="tabs[0].active">
+              <div class="upload">
+                <h2 class="upload__title">Перетащите файлы сюда</h2>
+                <p class="upload__instructions">или</p>
+                <label for="file" class="input__file">
+                  <input type="file" id="file">
+                  <span>Выберите файлы</span>
+                </label>
+                <p class="upload__instructions">Максимальный размер файла: 50 МБ.</p>
+                <div class="upload__drop-area">
+                  <h2 class="upload__drop-area__title">Перетащите файлы сюда</h2>
+                </div>
+              </div>
+              <div class="tabs__footer">
+                <button type="button" class="btn btn__primary">Загрузить файлы</button>
+              </div>
+            </div>
+            <div class="tabs__pane" *ngIf="tabs[1].active">
+              <div class="storage__library">
+                <div class="storage__file">
+                  <img src="" alt="">
+                </div>
+              </div>
+              <div class="tabs__footer">
+                <button type="button" class="btn btn__primary">Установить изображение</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

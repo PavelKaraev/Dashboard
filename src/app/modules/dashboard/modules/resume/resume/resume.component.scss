@@ -1,0 +1,23 @@
+.resume {
+  margin: 0 -20px;
+  padding: 30px 20px;
+  padding-top: 0;
+  color: #313541;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom: 1px solid #DFE6EE;
+  a {
+    color: inherit;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  &__top-info {
+    margin: 20px 0;
+  }
+  &__sub-text {
+    color: #C5C7CD;
+  }
+}
