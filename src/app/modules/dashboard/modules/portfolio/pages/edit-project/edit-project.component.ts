@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -25,8 +25,6 @@ export class EditProjectComponent implements OnInit {
     private route: ActivatedRoute,
     private portfolioService: PortfolioService,
     private datePipe: DatePipe,
-    private elementRef: ElementRef,
-    private changeDetector: ChangeDetectorRef,
     private router: Router
   ) { }
 
@@ -43,16 +41,14 @@ export class EditProjectComponent implements OnInit {
         descriptionControl: new FormControl(project.description, Validators.required),
         thumbnailControl: new FormControl(project.thumbnailData),
         dateControl: new FormControl(this.datePipe.transform(project.date, 'yyyy-MM-dd')),
-        repositoryControl: new FormControl(project.repostitory),
+        repositoryControl: new FormControl(project.repository),
         urlControl: new FormControl(project.url),
         categoryControl: new FormControl(project.category),
         statusControl: new FormControl(project.status),
         screenshotsControl: new FormControl(project.screenshotsData)
       })
 
-      if(project.thumbnail) {
-        this.thumbnail = project.thumbnail;
-      }
+
       if(project.screenshots) {
         this.screenshots = project.screenshots;
       }
@@ -71,96 +67,19 @@ export class EditProjectComponent implements OnInit {
     return this.editProjectForm.get('thumbnailControl');
   }
 
-  changeThumbnail(files) {
-    let reader = new FileReader();
-    let thumbnail = this.elementRef.nativeElement.querySelector('#thumbnail-label');
+  setThumbnail(image): void {
+    this.thumbnail = image;
 
-    if(files && files.length) {
-      const [file] = files;
-      reader.readAsDataURL(file);
-  
-      reader.onload = () => {
-        this.editProjectForm.patchValue({
-          thumbnailControl: file
-        });
-        thumbnail.classList.add('upload__label_not-empty');
-        this.preview = reader.result;
-      }
-
-      this.changeDetector.markForCheck();
-    } else {
-      this.editProjectForm.patchValue({
-        thumnailControl: ''
-      });
-      thumbnail.classList.remove('upload__label_not-empty');
-      this.preview = null
-    }
-  }
-
-  removeThumbnail() {
-    let thumbnail = this.elementRef.nativeElement.querySelector('#thumbnail-label');
     this.editProjectForm.patchValue({
-      thumnailControl: ''
+      thumbnailControl: image
     });
-    thumbnail.classList.remove('upload__label_not-empty');
-    this.preview = null
-  }
-
-  changeScreenshots(files) {
-    if(files && files.length) {
-      for(let file of files) {
-        let reader = new FileReader();
-
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.screenshotsPreview.push(reader.result)
-        }
-        this.screenshotsData.push(file)
-      }
-    } else {
-      this.screenshots.length = 0
-    }
-  }
-
-  removeScreenshot(id) {
-    this.screenshots.splice(id, 1);
-  }
-
-  uploadThumbnail(): Promise<string> {
-    return new Promise( resolve => {
-      this.portfolioService.uploadImage(this.editProjectForm.value.titleControl, this.editProjectForm.value.thumbnailControl, 'thumbnail')
-      .subscribe( url => {
-        resolve(url);
-      })
-    })
-  }
-
-  uploadScreenshots(file: File): Promise<string> {
-    return new Promise( resolve => {
-      this.portfolioService.uploadImage(this.editProjectForm.value.titleControl, file, 'screenshots')
-        .subscribe( (url: string) => {
-          resolve(url);
-        })
-      
-    })
   }
 
   async editProject(id: string) {
     if(this.editProjectForm.invalid) {
       console.log(this.editProjectForm);
       return;
-    }
-
-    if (this.editProjectForm.value.thumbnailControl) {
-      this.thumbnail = await this.uploadThumbnail();
-    }
-
-    if(this.screenshots.length) {
-      for(const file of this.screenshotsData) {
-        this.screenshots.push(await this.uploadScreenshots(file));
-      }
-    }
-    
+    }    
 
     const project: Project = {
       title: this.editProjectForm.value.titleControl,
@@ -170,7 +89,7 @@ export class EditProjectComponent implements OnInit {
       screenshots: this.screenshots,
       screenshotsData: this.screenshotsData,
       date: new Date(this.editProjectForm.value.dateControl),
-      repostitory: this.editProjectForm.value.repositoryControl,
+      repository: this.editProjectForm.value.repositoryControl,
       url: this.editProjectForm.value.urlControl,
       category: this.editProjectForm.value.categoryControl,
       status: this.editProjectForm.value.statusControl

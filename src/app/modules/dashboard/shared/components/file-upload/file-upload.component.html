@@ -1,1 +1,7 @@
-<p>file-upload works!</p>
+<button type="button" class="upload" (click)="showStorage()">
+  <div class="upload__preview" *ngIf="currentImage">
+    <img [src]="currentImage.url" [alt]="">
+  </div>
+</button>
+<button type="button" class="btn-close" *ngIf="currentImage" (click)="removeThumbnail()"></button>
+<ng-container appStorage></ng-container>

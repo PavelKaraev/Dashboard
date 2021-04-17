@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AuthGuard } from './modules/dashboard/shared/services/auth.guard';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   { 
     path: 'dashboard', 
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'ng-login',
@@ -24,6 +26,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules
   })],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

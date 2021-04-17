@@ -1,0 +1,116 @@
+.storage {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: .5);
+  overflow: hidden;
+  &__library {
+    display: flex;
+    align-items: flex-start;
+    height: calc(100% - 78px);
+    &-wrap {
+      display: flex;
+      flex-flow: wrap;
+      margin-left: -6px;
+      margin-right: -6px;
+    }
+    &-info {
+      flex-shrink: 0;
+      width: 265px;
+      height: calc(100% + 52px);
+      margin: -20px;
+      margin-left: auto;
+      padding: 20px 19px;
+      z-index: 75;
+      background: #f3f3f3;
+      border-left: 1px solid #ddd;
+      overflow: auto;
+      .divider {
+        width: 100%;
+        margin: 20px 0;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+  &__file {
+    flex-basis: 106px;
+    max-width: 106px;
+    margin: 5px 7px;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    &::before {
+      content: "";
+      padding-top: 100%;
+      float: left;
+    }
+    &_active {
+      background-color: #0099fa;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      object-fit: cover;
+    }
+  }
+  &__detail-img {
+    img {
+      width: 100%;
+      margin: 20px 0;
+    }
+  }
+  &__detail-info {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  &__detail-subtitle {
+    margin-bottom: 5px;
+    color: #9FA3A7;
+  }
+  .card {
+    height: calc(100vh - 100px);
+    &__content {
+      position: relative;
+      height: 100%;
+    }
+  }
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+  &__upload {
+    position: relative;
+    height: 100%;
+    border-radius: 2px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    background-image: url(../../../../../../assets/img/upload.svg);
+    background-color: #F7F8FC;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30%;
+    transition: background-color .4s;
+    &:hover {
+      background-color: #0099fa;
+      background-blend-mode: hard-light;
+    }
+    &-input {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

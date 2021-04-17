@@ -1,15 +1,15 @@
-import { FileUpload } from "./file-upload";
+import { FileUpload } from "../../modules/dashboard/shared/interfaces/file-upload";
 
 export interface Project {
   id?: string,
   title: string,
   description: string,
-  thumbnail: string,
+  thumbnail: {},
   thumbnailData: File,
   screenshots: string[],
   screenshotsData: File[],
   date?: Date,
-  repostitory?: string,
+  repository?: string,
   url?: string,
   category?: string,
   status?: string

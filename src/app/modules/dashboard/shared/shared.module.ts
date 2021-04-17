@@ -4,14 +4,22 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { QuillModule } from 'ngx-quill'
 import { LoaderComponent } from "src/app/shared/components/loader/loader.component";
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
-
+import { StorageDirective } from './directives/storage.directive';
+import { StorageComponent } from "./components/storage/storage.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
     LoaderComponent,
     FileUploadComponent,
+    StorageDirective,
+    StorageComponent
+  ],
+  entryComponents: [
+    StorageComponent
   ],
   imports: [
+    CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -20,8 +28,10 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
   exports: [
     HttpClientModule,
     QuillModule,
-    LoaderComponent
-  ],
+    LoaderComponent,
+    FileUploadComponent,
+    StorageDirective,
+  ]
 })
 
 export class SharedModule { }

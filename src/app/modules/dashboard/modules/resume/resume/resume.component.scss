@@ -6,6 +6,9 @@
   font-size: 14px;
   line-height: 17px;
   border-bottom: 1px solid #DFE6EE;
+  &:not(:first-child) {
+    padding-top: 20px;
+  }
   a {
     color: inherit;
   }

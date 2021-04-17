@@ -20,24 +20,6 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card__title">
-          <h3>Скриншоты</h3>
-        </div>
-        <div class="card__content">
-          <div class="upload upload__image upload__multiple">
-            <label for="screenshot" class="upload__label">
-              <input id="screenshot" formControlName="screenshotsControl" class="upload__input" type="file" (change)="changeScreenshots($event.target.files)" multiple>
-            </label>
-            <div *ngIf="screenshots.length" class="screenshot">
-              <div class="screenshot__item" *ngFor="let screenshot of screenshots; let i = index">
-                <img [src]="screenshot" alt="">
-                <button type="button" class="btn-close" (click)="removeScreenshot(i)"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-4">
       <div class="card">
@@ -87,15 +69,7 @@
           <h3>Заставка</h3>
         </div>
         <div class="card__content">
-          <div class="upload upload_image">
-            <label for="thumbnail" class="upload__label upload__label_not-empty" id="thumbnail-label">
-              <input id="thumbnail" class="upload__input" type="file" (change)="changeThumbnail($event.target.files)">
-              <div class="upload__preview">
-                <img class="upload__preview-image" [src]="project.thumbnail" alt="">
-              </div>
-            </label>
-            <button *ngIf="preview" type="button" class="btn-close" (click)="removeThumbnail()"></button>
-          </div>
+          <app-file-upload (onSetThumbnail)="setThumbnail($event)" [currentImage]="project.thumbnail"></app-file-upload>
         </div>
       </div>
     </div>

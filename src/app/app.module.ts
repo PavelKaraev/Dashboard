@@ -19,6 +19,9 @@ import { registerLocaleData } from '@angular/common';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { TimeDifferencePipe } from './shared/pipes/time-difference.pipe';
 
 registerLocaleData(ruLocale, 'ru');
 
@@ -34,6 +37,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HomePageComponent,
     ProjectCardComponent,
     ProjectPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SharedModule,
     QuillModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule,
   ],
   exports: [
     SharedModule,

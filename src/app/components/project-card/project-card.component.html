@@ -1,7 +1,7 @@
 <div class="project">
   <div class="project__image">
     <a [routerLink]="['/portfolio', 'project', project.id]">
-      <img [src]="project.thumbnail" class="img-fluid" [alt]="project.title">
+      <img [src]="project.thumbnail.url" *ngIf="project.thumbnail" class="img-fluid" [alt]="project.thumbnail.alt">
     </a>
     <div class="meta-info project__meta">
       <div class="meta-info__item meta-info__item_date">{{ project.date | date: 'longDate':null:'ru' }}</div>

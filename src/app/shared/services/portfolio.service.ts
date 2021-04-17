@@ -1,47 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { from, Observable, of, forkJoin } from "rxjs";
-import { catchError, finalize, map, switchMap, tap } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { Project } from '../interfaces/project';
 import { FirebaseCreateResponse } from 'src/app/modules/dashboard/shared/interfaces/firebase-create-response';
-import { AngularFireStorage, AngularFireUploadTask } from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PortfolioService {
-  firebase;
-  imageURL;
 
   constructor(
     private http: HttpClient,
-    private storage: AngularFireStorage
   ) { }
-
-
-  uploadImage(projectName: string, file: File, baseFolder: string) {
-    const { name } = file;
-    const filePath = `projects/${projectName}/${baseFolder}/${name}`;
-    const storageRef = this.storage.ref(filePath);
-    const uploadTask: AngularFireUploadTask = this.storage.upload(filePath, file);
-    return from(uploadTask).pipe(
-      switchMap(() => {
-        return from(storageRef.getDownloadURL()).pipe(
-          map(downloadURL => {
-            this.imageURL = downloadURL;
-            return downloadURL;
-          })
-        );
-      })
-    )
-  }
 
   addPost(project: Project): Observable<Project> {
     return this.http.post(`${environment.firebaseDB}/ng-portfolio/projects.json`, project)
       .pipe(
         map((response: FirebaseCreateResponse) => {
-          console.log(project);
           return {
             ...project,
             id: response.name,

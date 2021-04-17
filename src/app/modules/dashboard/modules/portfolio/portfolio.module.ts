@@ -8,7 +8,6 @@ import { NewProjectComponent } from './pages/new-project/new-project.component';
 import { SharedModule } from '../../shared/shared.module';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
-import { StorageComponent } from '../../components/storage/storage.component';
 
 const routes: Routes = [
   { 
@@ -42,8 +41,7 @@ const routes: Routes = [
     NewProjectComponent,
     ProjectsPageComponent,
     EditProjectComponent,
-    SearchPipe,
-    StorageComponent
+    SearchPipe
   ],
   imports: [
     CommonModule,
