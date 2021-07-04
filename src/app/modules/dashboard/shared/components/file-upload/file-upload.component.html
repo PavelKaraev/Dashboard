@@ -4,4 +4,4 @@
   </div>
 </button>
 <button type="button" class="btn-close" *ngIf="currentImage" (click)="removeThumbnail()"></button>
-<ng-container appStorage></ng-container>
+<ng-container appStorage (closeStorage)="closeStorage()"></ng-container>

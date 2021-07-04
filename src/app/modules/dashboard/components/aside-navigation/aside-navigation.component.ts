@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-aside-navigation',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideNavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: Document
+
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public toggleMenu(event: Event): void {
+    event.preventDefault();
+    this.document.body.classList.toggle('isMenuMinimize');
   }
 
 }

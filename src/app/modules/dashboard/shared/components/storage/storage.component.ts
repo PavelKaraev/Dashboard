@@ -20,6 +20,7 @@ export class StorageComponent implements OnInit, OnDestroy {
   customMetaForm: FormGroup;
   currentImage: {} = null;
   @Output() chooseImage = new EventEmitter();
+  @Output() closeStorage = new EventEmitter<void>();
 
   constructor(
     private storageService: StorageService
@@ -41,6 +42,10 @@ export class StorageComponent implements OnInit, OnDestroy {
     if(this.deleteSub) {
       this.deleteSub.unsubscribe();
     }
+  }
+
+  close(): void {
+    this.closeStorage.emit();
   }
 
   chooseImageURL(url: string) {

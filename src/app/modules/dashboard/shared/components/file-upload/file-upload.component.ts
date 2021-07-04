@@ -39,7 +39,10 @@ export class FileUploadComponent implements OnInit, DoCheck {
     this.componentRef = viewContainerRef.createComponent<StorageComponent>(componentFactory);
     this.componentRef.instance.chooseImage.subscribe(
       (image) => this.setImage(image)
-    )
+    );
+    this.componentRef.instance.closeStorage.subscribe(
+      () => this.closeStorage()
+    );
   }
 
   closeStorage() {

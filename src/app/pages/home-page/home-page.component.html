@@ -41,8 +41,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6" *ngFor="let project of projects; let i = index">
-        <app-project-card *ngIf="6 > i" [project]="project"></app-project-card>
+      <div class="col-lg-4 col-md-6" *ngFor="let project of projects | slice:0:6">
+        <app-project-card [project]="project"></app-project-card>
       </div>
     </div>
   </div>

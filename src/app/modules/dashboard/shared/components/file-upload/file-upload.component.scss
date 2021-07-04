@@ -18,13 +18,17 @@
   cursor: pointer;
   outline: none;
   &__preview {
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
     line-height: 0;
+    background: #fff;
     img {
       width: 100%;
     }

@@ -28,7 +28,7 @@ body {
   transition: background-color .4s ease-in-out;
   &__primary {
     background: #109CF1;
-    box-shadow: 0px 4px 10px rgba(16, 156, 241, 0.24);
+    box-shadow: 0px 4px 10px rgba(#109CF1, 0.24);
     &:hover {
       background-color: #008de7;
     }
@@ -222,12 +222,16 @@ body {
   cursor: pointer;
 }
 
+.isMenuMinimize {
+  .dashboard__content {
+    margin-left: 60px;
+  }
+}
+
 .dashboard__content {
   margin-top: 50px;
   margin-bottom: 50px;
-  &_cutsize {
-    margin-left: 255px;
-  }
+  margin-left: 255px;
 }
 
 .table {
@@ -267,6 +271,10 @@ body {
       .text {
         margin-top: 0;
         margin-bottom: 5px;
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
       }
       .sub-text {
         font-size: 12px;
@@ -288,7 +296,12 @@ body {
     }
   }
   .table__action {
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .btn__icon + .btn__icon {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -353,18 +366,30 @@ body {
   }
 }
 
-.screenshot {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -10px;
-  .screenshot__item {
-    margin: 10px 0;
-    position: relative;
-    padding: 10px 10px;
-    height: 160px;
-    img {
-      height: 100%;
-      object-fit: contain;
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .4s;
+  svg {
+    width: 12px;
+  }
+  &_primary {
+    background: #109CF1;
+    box-shadow: 0px 4px 10px rgba(#109CF1, 0.24);
+    &:hover {
+      background-color: #008de7;
+    }
+  }
+  &_danger {
+    background-color: #E34C4C;
+    box-shadow: 0px 4px 10px rgba(#E34C4C, 0.24);
+    &:hover {
+      background-color: #E1464E;
     }
   }
 }

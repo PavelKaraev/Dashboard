@@ -5,13 +5,13 @@
   left: 0;
   width: 255px;
   height: 100%;
-  padding: 35px 30px;
+  padding: 30px 20px;
   background: #363740;
   .aside-nav__title {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
-    font-weight: bold;
+    margin-bottom: 20px;
+    font-weight: 700;
     font-size: 19px;
     line-height: 24px;
     letter-spacing: 0.4px;
@@ -29,6 +29,7 @@
   border-radius: 50%;
   background-color: #3751FF;
   color: #DDE2FF;
+  flex-shrink: 0;
   svg {
     width: 15px;
     fill: currentColor;
@@ -36,27 +37,42 @@
 }
 
 .aside-menu {
-  margin: 0 -30px;
+  margin: 0 -20px;
   padding: 0;
   list-style: none;
   .aside-menu__link {
+    position: relative;
     display: flex;
     align-items: center;
-    padding: 15px 30px;
+    padding: 12px 20px;
     font-size: 16px;
-    line-height: 19px;
+    line-height: 1;
     letter-spacing: 0.2px;
     color: #A4A6B3;
     text-decoration: none;
     transition: color .2s linear;
+    &::after {
+      display: none;
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color:#DDE2FF;
+    }
     svg {
       margin-right: 12px;
       fill: currentColor;
+      flex-shrink: 0;
     }
     &_active {
       color: #DDE2FF;
-      border-left: 3px solid #DDE2FF;
       background-color: rgba(159, 162, 180, .08);
+      &::after {
+        display: block;
+      }
     }
     &:hover {
       color: #DDE2FF;
@@ -70,7 +86,7 @@
     padding-left: 35px;
     .aside-menu__dropdown-menu__link {
       display: block;
-      padding: 10px 30px 10px 0;
+      padding: 10px 20px 10px 0;
       text-decoration: none;
       color: #A4A6B3;
       &_active {
@@ -83,9 +99,40 @@
   }
 }
 
-
 .divider {
   height: 1px;
-  margin: 15px -30px;
+  margin: 10px -20px;
   background-color:rgba(223, 224, 235, .06);
+}
+
+:host-context(.isMenuMinimize) {
+  .aside-nav {
+    width: 50px;
+    padding: 30px 10px;
+    overflow: hidden;
+    &__title {
+      span {
+        display: none;
+      }
+    }
+  }
+  .logo {
+    margin-right: 0;
+  }
+  .aside-menu {
+    margin: 0 -10px;
+    &__link {
+      justify-content: center;
+      padding: 12px 10px;
+      svg {
+        margin-right: 0;
+      }
+      span {
+        display: none;
+      }
+    }
+    &__dropdown-menu {
+      display: none;
+    }
+  }
 }
